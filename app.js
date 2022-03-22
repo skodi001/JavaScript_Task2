@@ -237,7 +237,3 @@ btn.addEventListener("click", function () {
 
 // function expressions are...kind of hoisted.
 // The variable is hoisted, but has a value of undefined
-hoot();
-var hoot = function () {
-  console.log("HOOOO HOOOOO");
-};
