@@ -63,34 +63,101 @@
 //   }
 //   return result;
 // }
-function outer() {
-  let movie = "Amadeus";
+// function outer() {
+//   let movie = "Amadeus";
 
-  function inner() {
-    // let movie = "The Shining";
+//   function inner() {
+//     // let movie = "The Shining";
 
-    function extraInner() {
-      //movie is not defined in this function
-      //but it has access to parent function's variables
-      console.log(movie.toUpperCase());
-    }
-    extraInner();
-  }
-  inner();
-}
+//     function extraInner() {
+//       //movie is not defined in this function
+//       //but it has access to parent function's variables
+//       console.log(movie.toUpperCase());
+//     }
+//     extraInner();
+//   }
+//   inner();
+// }
 
-outer(); //'AMADEUS'
-// Function Statement
+// outer(); //'AMADEUS'
+// // Function Statement
+// function add(x, y) {
+//   return x + y;
+// }
+
+// // Function Expression (Anonymous)
+// const sum = function (x, y) {
+//   return x + y;
+// };
+
+// // Function Expression (Named)
+// const product = function multiply(x, y) {
+//   return x * y;
+// };
+
 function add(x, y) {
   return x + y;
 }
 
-// Function Expression (Anonymous)
-const sum = function (x, y) {
-  return x + y;
+const subtract = function (x, y) {
+  return x - y;
 };
 
-// Function Expression (Named)
-const product = function multiply(x, y) {
+function multiply(x, y) {
   return x * y;
+}
+
+const divide = function (x, y) {
+  return x / y;
 };
+
+//We can store functions in an array!
+const operations = [add, subtract, multiply, divide];
+
+//Loop over all the functions in operations
+for (let func of operations) {
+  let result = func(30, 5); //execute func!
+  console.log(result);
+}
+
+// We can also store functions in objects!
+const thing = {
+  doSomething: multiply,
+};
+thing.doSomething(4, 5); //20
+
+// This function accepts another function as an argument
+function callThreeTimes(f) {
+  //And calls it 3 times:
+  f();
+  f();
+  f();
+}
+
+function cry() {
+  console.log("BOO HOO I'M SO SAD!");
+}
+
+function rage() {
+  console.log("I HATE EVERYTHING!");
+}
+
+function repeatNTimes(action, num) {
+  // call action (a function) num number of times
+  for (let i = 0; i < num; i++) {
+    action();
+  }
+}
+
+repeatNTimes(rage, 13);
+
+// Accepts 2 functions as arguments
+// Randomly selects 1 to execute
+function pickOne(f1, f2) {
+  let rand = Math.random();
+  if (rand < 0.5) {
+    f1();
+  } else {
+    f2();
+  }
+}
