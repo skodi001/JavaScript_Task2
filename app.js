@@ -352,57 +352,182 @@
 // }
 
 // Equivalent arrow function:
-const square = (x) => {
-  return x * x;
-};
+// const square = (x) => {
+//   return x * x;
+// };
 
-//parens are option when you have 1 parameter
-const isEven = (num) => {
-  return num % 2 === 0;
-};
+// //parens are option when you have 1 parameter
+// const isEven = (num) => {
+//   return num % 2 === 0;
+// };
 
-//Must include parens for multiple parameters
-const multiply = (x, y) => {
-  return x * y;
-};
+// //Must include parens for multiple parameters
+// const multiply = (x, y) => {
+//   return x * y;
+// };
 
-// Must include parens for zero parameters
-const greet = () => {
-  console.log("HI!");
-};
+// // Must include parens for zero parameters
+// const greet = () => {
+//   console.log("HI!");
+// };
 
-// "Regular" arrow function:
-const square = (n) => {
-  return n * n;
-};
-// Implicit Return, on multiple lines using parens
-const square1 = (n) => n * n;
+// // "Regular" arrow function:
+// const square = (n) => {
+//   return n * n;
+// };
+// // Implicit Return, on multiple lines using parens
+// const square1 = (n) => n * n;
 
-// Implicit return one-liner:
-const square2 = (n) => n * n;
+// // Implicit return one-liner:
+// const square2 = (n) => n * n;
 
-const nums = [1, 2, 3, 4, 5, 6, 7, 8];
+// const nums = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// ALL THREE VERSIONS GIVE US THE SAME RESULT:
-const doubles1 = nums.map(function (n) {
-  return n * 2;
+// // ALL THREE VERSIONS GIVE US THE SAME RESULT:
+// const doubles1 = nums.map(function (n) {
+//   return n * 2;
+// });
+
+// const doubles2 = nums.map((n) => {
+//   return n * 2;
+// });
+
+// const doubles3 = nums.map((n) => n * 2);
+
+// const parityList = nums.map(function (n) {
+//   if (n % 2 === 0) return "even";
+//   return "odd";
+// });
+
+// const parityList1 = nums.map((n) => {
+//   if (n % 2 === 0) return "even";
+//   return "odd";
+// });
+// const parityList2 = nums.map((n) => (n % 2 === 0 ? "even" : "odd"));
+
+// const parityList3 = nums.map((n) => (n % 2 === 0 ? "even" : "odd"));
+
+let movies = [
+  "The Fantastic Mr. Fox",
+  "Mr. and Mrs. Smith",
+  "Mrs. Doubtfire",
+  "Mr. Deeds",
+];
+
+// Find first movie that includes 'Mrs' in its title:
+const movie = movies.find((movie) => {
+  return movie.includes("Mrs");
 });
 
-const doubles2 = nums.map((n) => {
-  return n * 2;
+//Find first movie that begins with 'Mrs':
+const movie2 = movies.find((m) => m.indexOf("Mrs") === 0);
+
+const books = [
+  {
+    title: "Good Omens",
+    authors: ["Terry Pratchett", "Neil Gaiman"],
+    rating: 4.25,
+  },
+  {
+    title: "Bone: The Complete Edition",
+    authors: ["Jeff Smith"],
+    rating: 4.42,
+  },
+  {
+    title: "American Gods",
+    authors: ["Neil Gaiman"],
+    rating: 4.11,
+  },
+  {
+    title: "A Gentleman in Moscow",
+    authors: ["Amor Towles"],
+    rating: 4.36,
+  },
+];
+//Find first book w/ rating over 4.3
+const goodBook = books.find((b) => b.rating >= 4.3);
+
+//Find first book with Neil Gaiman as an author:
+const neilBook = books.find((b) => b.authors.includes("Neil Gaiman"));
+
+const nums = [34, 35, 67, 54, 109, 102, 32, 9];
+
+const odds = nums.filter((n) => n % 2 === 1);
+const evens = nums.filter((n) => n % 2 === 0);
+const bigNums = nums.filter((n) => n > 50);
+
+const books = [
+  {
+    title: "Good Omens",
+    authors: ["Terry Pratchett", "Neil Gaiman"],
+    rating: 4.25,
+    genres: ["fiction", "fantasy"],
+  },
+  {
+    title: "Changing My Mind",
+    authors: ["Zadie Smith"],
+    rating: 3.83,
+    genres: ["nonfiction", "essays"],
+  },
+  {
+    title: "Bone: The Complete Edition",
+    authors: ["Jeff Smith"],
+    rating: 4.42,
+    genres: ["fiction", "graphic novel", "fantasy"],
+  },
+  {
+    title: "American Gods",
+    authors: ["Neil Gaiman"],
+    rating: 4.11,
+    genres: ["fiction", "fantasy"],
+  },
+  {
+    title: "A Gentleman in Moscow",
+    authors: ["Amor Towles"],
+    rating: 4.36,
+    genres: ["fiction", "historical fiction"],
+  },
+  {
+    title: "The Name of the Wind",
+    authors: ["Patrick Rothfuss"],
+    rating: 4.54,
+    genres: ["fiction", "fantasy"],
+  },
+  {
+    title: "The Overstory",
+    authors: ["Richard Powers"],
+    rating: 4.19,
+    genres: ["fiction", "short stories"],
+  },
+  {
+    title: "The Way of Kings",
+    authors: ["Brandon Sanderson"],
+    rating: 4.65,
+    genres: ["fantasy", "epic"],
+  },
+  {
+    title: "Lord of the flies",
+    authors: ["William Golding"],
+    rating: 3.67,
+    genres: ["fiction"],
+  },
+];
+
+//All books rated over 4.3:
+const goodBooks = books.filter((b) => b.rating > 4.3);
+
+// All books with fantasy as a genre:
+const fantasyBooks = books.filter((book) => book.genres.includes("fantasy"));
+
+// all books that are either short stories or essays:
+const shortForm = books.filter(
+  (book) =>
+    book.genres.includes("short stories") || book.genres.includes("essays")
+);
+
+// Simple search functionality:
+const query = "The";
+const results = books.filter((book) => {
+  const title = book.title.toLowerCase();
+  return title.includes(query.toLowerCase());
 });
-
-const doubles3 = nums.map((n) => n * 2);
-
-const parityList = nums.map(function (n) {
-  if (n % 2 === 0) return "even";
-  return "odd";
-});
-
-const parityList1 = nums.map((n) => {
-  if (n % 2 === 0) return "even";
-  return "odd";
-});
-const parityList2 = nums.map((n) => (n % 2 === 0 ? "even" : "odd"));
-
-const parityList3 = nums.map((n) => (n % 2 === 0 ? "even" : "odd"));
