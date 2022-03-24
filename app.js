@@ -407,54 +407,222 @@
 
 // const parityList3 = nums.map((n) => (n % 2 === 0 ? "even" : "odd"));
 
-let movies = [
-  "The Fantastic Mr. Fox",
-  "Mr. and Mrs. Smith",
-  "Mrs. Doubtfire",
-  "Mr. Deeds",
-];
+// let movies = [
+//   "The Fantastic Mr. Fox",
+//   "Mr. and Mrs. Smith",
+//   "Mrs. Doubtfire",
+//   "Mr. Deeds",
+// ];
 
-// Find first movie that includes 'Mrs' in its title:
-const movie = movies.find((movie) => {
-  return movie.includes("Mrs");
+// // Find first movie that includes 'Mrs' in its title:
+// const movie = movies.find((movie) => {
+//   return movie.includes("Mrs");
+// });
+
+// //Find first movie that begins with 'Mrs':
+// const movie2 = movies.find((m) => m.indexOf("Mrs") === 0);
+
+// const books = [
+//   {
+//     title: "Good Omens",
+//     authors: ["Terry Pratchett", "Neil Gaiman"],
+//     rating: 4.25,
+//   },
+//   {
+//     title: "Bone: The Complete Edition",
+//     authors: ["Jeff Smith"],
+//     rating: 4.42,
+//   },
+//   {
+//     title: "American Gods",
+//     authors: ["Neil Gaiman"],
+//     rating: 4.11,
+//   },
+//   {
+//     title: "A Gentleman in Moscow",
+//     authors: ["Amor Towles"],
+//     rating: 4.36,
+//   },
+// ];
+// //Find first book w/ rating over 4.3
+// const goodBook = books.find((b) => b.rating >= 4.3);
+
+// //Find first book with Neil Gaiman as an author:
+// const neilBook = books.find((b) => b.authors.includes("Neil Gaiman"));
+
+// const nums = [34, 35, 67, 54, 109, 102, 32, 9];
+
+// const odds = nums.filter((n) => n % 2 === 1);
+// const evens = nums.filter((n) => n % 2 === 0);
+// const bigNums = nums.filter((n) => n > 50);
+
+// const books = [
+//   {
+//     title: "Good Omens",
+//     authors: ["Terry Pratchett", "Neil Gaiman"],
+//     rating: 4.25,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "Changing My Mind",
+//     authors: ["Zadie Smith"],
+//     rating: 3.83,
+//     genres: ["nonfiction", "essays"],
+//   },
+//   {
+//     title: "Bone: The Complete Edition",
+//     authors: ["Jeff Smith"],
+//     rating: 4.42,
+//     genres: ["fiction", "graphic novel", "fantasy"],
+//   },
+//   {
+//     title: "American Gods",
+//     authors: ["Neil Gaiman"],
+//     rating: 4.11,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "A Gentleman in Moscow",
+//     authors: ["Amor Towles"],
+//     rating: 4.36,
+//     genres: ["fiction", "historical fiction"],
+//   },
+//   {
+//     title: "The Name of the Wind",
+//     authors: ["Patrick Rothfuss"],
+//     rating: 4.54,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "The Overstory",
+//     authors: ["Richard Powers"],
+//     rating: 4.19,
+//     genres: ["fiction", "short stories"],
+//   },
+//   {
+//     title: "The Way of Kings",
+//     authors: ["Brandon Sanderson"],
+//     rating: 4.65,
+//     genres: ["fantasy", "epic"],
+//   },
+//   {
+//     title: "Lord of the flies",
+//     authors: ["William Golding"],
+//     rating: 3.67,
+//     genres: ["fiction"],
+//   },
+// ];
+
+// //All books rated over 4.3:
+// const goodBooks = books.filter((b) => b.rating > 4.3);
+
+// // All books with fantasy as a genre:
+// const fantasyBooks = books.filter((book) => book.genres.includes("fantasy"));
+
+// // all books that are either short stories or essays:
+// const shortForm = books.filter(
+//   (book) =>
+//     book.genres.includes("short stories") || book.genres.includes("essays")
+// );
+
+// // Simple search functionality:
+// const query = "The";
+// const results = books.filter((book) => {
+//   const title = book.title.toLowerCase();
+//   return title.includes(query.toLowerCase());
+// });
+
+const words = ["dog", "dig", "log", "bag", "wag"];
+
+//Is every word 3 characters long?
+const all3Letters = words.every((word) => word.length === 3);
+
+// Do all words end in 'g'?
+const allEndInG = words.every((word) => {
+  const last = word.length - 1;
+  return word[last] === "g";
 });
 
-//Find first movie that begins with 'Mrs':
-const movie2 = movies.find((m) => m.indexOf("Mrs") === 0);
+//Does at least 1 book start with 'd'?
+const someStartWithD = words.some((word) => word[0] === "d");
+
+// Do all words start with 'd'?
+const allStartWithD = words.every((word) => word[0] === "d");
 
 const books = [
   {
     title: "Good Omens",
     authors: ["Terry Pratchett", "Neil Gaiman"],
     rating: 4.25,
+    genres: ["fiction", "fantasy"],
+  },
+  {
+    title: "Changing My Mind",
+    authors: ["Zadie Smith"],
+    rating: 3.83,
+    genres: ["nonfiction", "essays"],
   },
   {
     title: "Bone: The Complete Edition",
     authors: ["Jeff Smith"],
     rating: 4.42,
+    genres: ["fiction", "graphic novel", "fantasy"],
   },
   {
     title: "American Gods",
     authors: ["Neil Gaiman"],
     rating: 4.11,
+    genres: ["fiction", "fantasy"],
   },
   {
     title: "A Gentleman in Moscow",
     authors: ["Amor Towles"],
     rating: 4.36,
+    genres: ["fiction", "historical fiction"],
+  },
+  {
+    title: "The Name of the Wind",
+    authors: ["Patrick Rothfuss"],
+    rating: 4.54,
+    genres: ["fiction", "fantasy"],
+  },
+  {
+    title: "The Overstory",
+    authors: ["Richard Powers"],
+    rating: 4.19,
+    genres: ["fiction", "short stories"],
+  },
+  {
+    title: "The Way of Kings",
+    authors: ["Brandon Sanderson"],
+    rating: 4.65,
+    genres: ["fantasy", "epic"],
+  },
+  {
+    title: "Lord of the flies",
+    authors: ["William Golding"],
+    rating: 3.67,
+    genres: ["fiction"],
   },
 ];
-//Find first book w/ rating over 4.3
-const goodBook = books.find((b) => b.rating >= 4.3);
+//Are all books rated 3.5 or higher?
+const allGoodBooks = books.every((book) => book.rating > 3.5);
 
-//Find first book with Neil Gaiman as an author:
-const neilBook = books.find((b) => b.authors.includes("Neil Gaiman"));
+//Do any books have 2 authors?
+const any2Authors = books.some((book) => book.authors.length === 2);
 
-const nums = [34, 35, 67, 54, 109, 102, 32, 9];
+const prices = [400.5, 3000, 99.99, 35.99, 12.0, 9500];
+// REMEMBER THAT SORT() MUTATES THE ORIGINAL ARRAY!
+// I'm using slice() to create a new copy, otherwise we would be sorting the same array 3 times:
 
-const odds = nums.filter((n) => n % 2 === 1);
-const evens = nums.filter((n) => n % 2 === 0);
-const bigNums = nums.filter((n) => n > 50);
+// Default string sort :(
+const badSort = prices.slice().sort();
+
+// Ascending Sort:
+const ascSort = prices.slice().sort((a, b) => a - b);
+
+// Descending Sort:
+const descSort = prices.slice().sort((a, b) => b - a);
 
 const books = [
   {
@@ -513,21 +681,5 @@ const books = [
   },
 ];
 
-//All books rated over 4.3:
-const goodBooks = books.filter((b) => b.rating > 4.3);
-
-// All books with fantasy as a genre:
-const fantasyBooks = books.filter((book) => book.genres.includes("fantasy"));
-
-// all books that are either short stories or essays:
-const shortForm = books.filter(
-  (book) =>
-    book.genres.includes("short stories") || book.genres.includes("essays")
-);
-
-// Simple search functionality:
-const query = "The";
-const results = books.filter((book) => {
-  const title = book.title.toLowerCase();
-  return title.includes(query.toLowerCase());
-});
+// Sorting books by their rating:
+books.sort((a, b) => b.rating - a.rating);
