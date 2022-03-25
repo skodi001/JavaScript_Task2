@@ -740,77 +740,144 @@ const votes = ["y", "y", "n", "y", "n", "y", "n", "y", "n", "n", "n", "y", "y"];
 // }, {})
 
 // The shorter version:
-const results = votes.reduce((tally, val) => {
-  tally[val] = (tally[val] || 0) + 1;
-  return tally;
-}, {});
+// const results = votes.reduce((tally, val) => {
+//   tally[val] = (tally[val] || 0) + 1;
+//   return tally;
+// }, {});
 
-const books = [
-  {
-    title: "Good Omens",
-    authors: ["Terry Pratchett", "Neil Gaiman"],
-    rating: 4.25,
-    genres: ["fiction", "fantasy"],
-  },
-  {
-    title: "Changing My Mind",
-    authors: ["Zadie Smith"],
-    rating: 3.83,
-    genres: ["nonfiction", "essays"],
-  },
-  {
-    title: "Bone: The Complete Edition",
-    authors: ["Jeff Smith"],
-    rating: 4.42,
-    genres: ["fiction", "graphic novel", "fantasy"],
-  },
-  {
-    title: "American Gods",
-    authors: ["Neil Gaiman"],
-    rating: 4.11,
-    genres: ["fiction", "fantasy"],
-  },
-  {
-    title: "A Gentleman in Moscow",
-    authors: ["Amor Towles"],
-    rating: 4.36,
-    genres: ["fiction", "historical fiction"],
-  },
-  {
-    title: "The Name of the Wind",
-    authors: ["Patrick Rothfuss"],
-    rating: 4.54,
-    genres: ["fiction", "fantasy"],
-  },
-  {
-    title: "The Overstory",
-    authors: ["Richard Powers"],
-    rating: 4.19,
-    genres: ["fiction", "short stories"],
-  },
-  {
-    title: "A Truly Horrible Book",
-    authors: ["Xavier Time"],
-    rating: 2.18,
-    genres: ["fiction", "garbage"],
-  },
-  {
-    title: "The Way of Kings",
-    authors: ["Brandon Sanderson"],
-    rating: 4.65,
-    genres: ["fantasy", "epic"],
-  },
-  {
-    title: "Lord of the flies",
-    authors: ["William Golding"],
-    rating: 3.67,
-    genres: ["fiction"],
-  },
-];
-// To group books by rating:
-const groupedByRatings = books.reduce((groupedBooks, book) => {
-  const key = Math.floor(book.rating);
-  if (!groupedBooks[key]) groupedBooks[key] = [];
-  groupedBooks[key].push(book);
-  return groupedBooks;
-}, {});
+// const books = [
+//   {
+//     title: "Good Omens",
+//     authors: ["Terry Pratchett", "Neil Gaiman"],
+//     rating: 4.25,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "Changing My Mind",
+//     authors: ["Zadie Smith"],
+//     rating: 3.83,
+//     genres: ["nonfiction", "essays"],
+//   },
+//   {
+//     title: "Bone: The Complete Edition",
+//     authors: ["Jeff Smith"],
+//     rating: 4.42,
+//     genres: ["fiction", "graphic novel", "fantasy"],
+//   },
+//   {
+//     title: "American Gods",
+//     authors: ["Neil Gaiman"],
+//     rating: 4.11,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "A Gentleman in Moscow",
+//     authors: ["Amor Towles"],
+//     rating: 4.36,
+//     genres: ["fiction", "historical fiction"],
+//   },
+//   {
+//     title: "The Name of the Wind",
+//     authors: ["Patrick Rothfuss"],
+//     rating: 4.54,
+//     genres: ["fiction", "fantasy"],
+//   },
+//   {
+//     title: "The Overstory",
+//     authors: ["Richard Powers"],
+//     rating: 4.19,
+//     genres: ["fiction", "short stories"],
+//   },
+//   {
+//     title: "A Truly Horrible Book",
+//     authors: ["Xavier Time"],
+//     rating: 2.18,
+//     genres: ["fiction", "garbage"],
+//   },
+//   {
+//     title: "The Way of Kings",
+//     authors: ["Brandon Sanderson"],
+//     rating: 4.65,
+//     genres: ["fantasy", "epic"],
+//   },
+//   {
+//     title: "Lord of the flies",
+//     authors: ["William Golding"],
+//     rating: 3.67,
+//     genres: ["fiction"],
+//   },
+// ];
+// // To group books by rating:
+// const groupedByRatings = books.reduce((groupedBooks, book) => {
+//   const key = Math.floor(book.rating);
+//   if (!groupedBooks[key]) groupedBooks[key] = [];
+//   groupedBooks[key].push(book);
+//   return groupedBooks;
+// }, {});
+
+// The old way of adding a default value:
+// function multiply(x, y) {
+//   if (typeof y === 'undefined') {
+//     y = 1;
+//   }
+//   return x * y;
+// }
+
+// A slightly shorter version:
+// function multiply(x, y) {
+//   y = typeof y === 'undefined' ? 1 : y
+//   return x * y;
+// }
+
+// The new super clean way of adding defaults!
+function multiply(x, y = 1) {
+  return x * y;
+}
+multiply(3, 4); //12
+multiply(3); //3
+
+// Another example!
+// const greet = (person, greeting = 'hi') => {
+//   console.log(`${greeting}, ${person}!`)
+// }
+
+// Default value of an array:
+// const blah = (x, y = [1, 2, 3]) => {
+//   console.log(x, y);
+// }
+
+// Multiple default values are possible, but rare
+// const greet = (person, greeting = 'hi', punctuation = '!') => {
+//   console.log(`${greeting}, ${person} ${punctuation}`)
+// }
+
+function giveMeFour(a, b, c, d) {
+  console.log("a", a);
+  console.log("b", b);
+  console.log("c", c);
+  console.log("d", d);
+}
+
+const colors = ["red", "orange", "yellow", "green"];
+
+// Without spread:
+giveMeFour(colors);
+// a ["red", "orange", "yellow", "green"]
+// b undefined
+// c undefined
+// d undefined
+
+// WITH SPREAD!!!
+// Values are passed as separate args:
+giveMeFour(...colors);
+// a 'red'
+// b 'orange'
+// c 'yellow'
+// d 'green'
+
+//We can also spread strings!
+giveMeFour(..."GOAT");
+// a G
+// b O
+// c A
+// d T
