@@ -973,49 +973,87 @@ const votes = ["y", "y", "n", "y", "n", "y", "n", "y", "n", "n", "n", "y", "y"];
 // }
 
 // New way using rest:
-function sum(...nums) {
-  return nums.reduce((total, currVal) => {
-    return total + currVal;
-  });
-}
+// function sum(...nums) {
+//   return nums.reduce((total, currVal) => {
+//     return total + currVal;
+//   });
+// }
 
-//We can have named params and then collect the rest into an array:
-function fullName(first, last, ...titles) {
-  console.log("first", first);
-  console.log("last", last);
-  console.log("titles", titles);
-}
+// //We can have named params and then collect the rest into an array:
+// function fullName(first, last, ...titles) {
+//   console.log("first", first);
+//   console.log("last", last);
+//   console.log("titles", titles);
+// }
 
-// We can use rest parameters in arrow functions!
-const multiply = (...nums) => nums.reduce((total, currVal) => total * currVal);
+// // We can use rest parameters in arrow functions!
+// const multiply = (...nums) => nums.reduce((total, currVal) => total * currVal);
 
-const raceResults = [
-  "Eliud Kipchoge",
-  "Feyisa Lelisa",
-  "Galen Rupp",
-  "Ghirmay Ghebreslassie",
-  "Alphonce Simbu",
-  "Jared Ward",
+// const raceResults = [
+//   "Eliud Kipchoge",
+//   "Feyisa Lelisa",
+//   "Galen Rupp",
+//   "Ghirmay Ghebreslassie",
+//   "Alphonce Simbu",
+//   "Jared Ward",
+// ];
+
+// // The old way:
+// // const gold = raceResults[0]
+// // const silver = raceResults[1]
+// // const bronze = raceResults[2]
+
+// // Using Destructuring:
+// const [gold, silver, bronze] = raceResults;
+// gold; //'Eliud Kipchoge'
+// silver; //'Feyisa Lelisa'
+// bronze; //'Galen Rupp'
+
+// const [first, , , fourth] = raceResults;
+// first; //'Eliud Kipchoge'
+// fourth; //'Ghirmay Ghebreslassie'
+
+// const [winner, ...others] = raceResults;
+// winner; //'Eliud Kipchoge'
+// others; //["Feyisa Lelisa", "Galen Rupp", "Ghirmay Ghebreslassie", "Alphonce Simbu", "Jared Ward"]
+// const runner = {
+//   first: "Eliud",
+//   last: "Kipchoge",
+//   country: "Kenya",
+//   title: "Elder of the Order of the Golden Heart of Kenya",
+// };
+
+// // const {
+// //   first,
+// //   last,
+// //   time
+// // } = runner;
+
+// const { country: nation, title: honorific } = runner;
+
+// const { first, last, ...other } = runner;
+
+const results = [
+  {
+    first: "Eliud",
+    last: "Kipchoge",
+    country: "Kenya",
+  },
+  {
+    first: "Feyisa",
+    last: "Lilesa",
+    country: "Ethiopia",
+  },
+  {
+    first: "Galen",
+    last: "Rupp",
+    country: "United States",
+  },
 ];
-
-// The old way:
-// const gold = raceResults[0]
-// const silver = raceResults[1]
-// const bronze = raceResults[2]
-
-// Using Destructuring:
-const [gold, silver, bronze] = raceResults;
-gold; //'Eliud Kipchoge'
-silver; //'Feyisa Lelisa'
-bronze; //'Galen Rupp'
-
-const [first, , , fourth] = raceResults;
-first; //'Eliud Kipchoge'
-fourth; //'Ghirmay Ghebreslassie'
-
-const [winner, ...others] = raceResults;
-winner; //'Eliud Kipchoge'
-others; //["Feyisa Lelisa", "Galen Rupp", "Ghirmay Ghebreslassie", "Alphonce Simbu", "Jared Ward"]
+// NESTED DESTRUCTURING
+const [{ first: goldWinner }, { country }] = results;
+goldWinner; //"Eliud"
+country; //"Ethiopia"
 const runner = {
   first: "Eliud",
   last: "Kipchoge",
@@ -1023,12 +1061,24 @@ const runner = {
   title: "Elder of the Order of the Golden Heart of Kenya",
 };
 
-// const {
-//   first,
-//   last,
-//   time
-// } = runner;
+// Rather than destructuring INSIDE the function body
+// function print(person) {
+//   const {
+//     first,
+//     last,
+//     title
+//   } = person;
+//   console.log(`${first} ${last}, ${title}`)
+// }
 
-const { country: nation, title: honorific } = runner;
+// We can unpack the values we want right in the parameter list:
+function print({ first, last, title }) {
+  console.log(`${first} ${last}, ${title}`);
+}
 
-const { first, last, ...other } = runner;
+const response = ["HTTP/1.1", "200 OK", "application/json"];
+
+// Also works with array parameters:
+function parseResponse([protocol, statusCode, contentType]) {
+  console.log(`Status: ${statusCode}`);
+}
