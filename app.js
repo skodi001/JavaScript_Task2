@@ -1033,52 +1033,115 @@ const votes = ["y", "y", "n", "y", "n", "y", "n", "y", "n", "n", "n", "y", "y"];
 
 // const { first, last, ...other } = runner;
 
-const results = [
-  {
-    first: "Eliud",
-    last: "Kipchoge",
-    country: "Kenya",
-  },
-  {
-    first: "Feyisa",
-    last: "Lilesa",
-    country: "Ethiopia",
-  },
-  {
-    first: "Galen",
-    last: "Rupp",
-    country: "United States",
-  },
-];
-// NESTED DESTRUCTURING
-const [{ first: goldWinner }, { country }] = results;
-goldWinner; //"Eliud"
-country; //"Ethiopia"
-const runner = {
-  first: "Eliud",
-  last: "Kipchoge",
-  country: "Kenya",
-  title: "Elder of the Order of the Golden Heart of Kenya",
-};
+// const results = [
+//   {
+//     first: "Eliud",
+//     last: "Kipchoge",
+//     country: "Kenya",
+//   },
+//   {
+//     first: "Feyisa",
+//     last: "Lilesa",
+//     country: "Ethiopia",
+//   },
+//   {
+//     first: "Galen",
+//     last: "Rupp",
+//     country: "United States",
+//   },
+// ];
+// // NESTED DESTRUCTURING
+// const [{ first: goldWinner }, { country }] = results;
+// goldWinner; //"Eliud"
+// country; //"Ethiopia"
+// const runner = {
+//   first: "Eliud",
+//   last: "Kipchoge",
+//   country: "Kenya",
+//   title: "Elder of the Order of the Golden Heart of Kenya",
+// };
 
-// Rather than destructuring INSIDE the function body
-// function print(person) {
-//   const {
-//     first,
-//     last,
-//     title
-//   } = person;
-//   console.log(`${first} ${last}, ${title}`)
+// // Rather than destructuring INSIDE the function body
+// // function print(person) {
+// //   const {
+// //     first,
+// //     last,
+// //     title
+// //   } = person;
+// //   console.log(`${first} ${last}, ${title}`)
+// // }
+
+// // We can unpack the values we want right in the parameter list:
+// function print({ first, last, title }) {
+//   console.log(`${first} ${last}, ${title}`);
 // }
 
-// We can unpack the values we want right in the parameter list:
-function print({ first, last, title }) {
-  console.log(`${first} ${last}, ${title}`);
+// const response = ["HTTP/1.1", "200 OK", "application/json"];
+
+// // Also works with array parameters:
+// function parseResponse([protocol, statusCode, contentType]) {
+//   console.log(`Status: ${statusCode}`);
+// }
+
+// const getStats = (arr) => {
+//   const max = Math.max(...arr);
+//   const min = Math.min(...arr);
+//   const sum = arr.reduce((sum, r) => sum + r);
+//   const avg = sum / arr.length;
+// The "old" way:
+//   return {
+//     max: max,
+//     min: min,
+//     sum: sum,
+//     avg: avg
+//   }
+// }
+
+const getStats = (arr) => {
+  const max = Math.max(...arr);
+  const min = Math.min(...arr);
+  const sum = arr.reduce((sum, r) => sum + r);
+  const avg = sum / arr.length;
+  // Using the new shorthand property syntax:
+  return {
+    max,
+    min,
+    sum,
+    avg,
+  };
+};
+const reviews = [4.5, 5.0, 3.44, 2.8, 3.5, 4.0, 3.5];
+
+const stats = getStats(reviews);
+
+function pick(arr) {
+  //return random element from arr
+  const idx = Math.floor(Math.random() * arr.length);
+  return arr[idx];
 }
 
-const response = ["HTTP/1.1", "200 OK", "application/json"];
-
-// Also works with array parameters:
-function parseResponse([protocol, statusCode, contentType]) {
-  console.log(`Status: ${statusCode}`);
+function getCard() {
+  const values = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K",
+    "A",
+  ];
+  const suits = ["clubs", "spades", "hearts", "diamonds"];
+  const value = pick(values);
+  const suit = pick(suits);
+  return {
+    value,
+    suit,
+  };
 }
