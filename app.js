@@ -1199,3 +1199,13 @@ const math = {
 
 // To execute multiply:
 math.multiply(5, 9); //45
+
+const auth = {
+  username: "TommyBot",
+  login() {
+    console.log("LOGGED YOU IN!");
+  },
+  logout() {
+    console.log("GOODBYE");
+  },
+};
