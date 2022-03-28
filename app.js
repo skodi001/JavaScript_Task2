@@ -1146,66 +1146,97 @@ const votes = ["y", "y", "n", "y", "n", "y", "n", "y", "n", "n", "n", "y", "y"];
 //   };
 // }
 
-const role = "host";
-const person = "Jools Holland";
-const role2 = "Director";
-const person2 = "James Cameron";
+// const role = "host";
+// const person = "Jools Holland";
+// const role2 = "Director";
+// const person2 = "James Cameron";
 
-// The old way:
-// Make the object
-// const team = {};
-// Then add a property using dynamic key:
-// team[role] = person;
-// team[role2] = person2;
+// // The old way:
+// // Make the object
+// // const team = {};
+// // Then add a property using dynamic key:
+// // team[role] = person;
+// // team[role2] = person2;
 
-// USING COMPUTED PROPERTIES!
-const team = {
-  [role]: person,
-  [role2]: person2,
-  [1 + 6 + 9]: "sixteen",
+// // USING COMPUTED PROPERTIES!
+// const team = {
+//   [role]: person,
+//   [role2]: person2,
+//   [1 + 6 + 9]: "sixteen",
+// };
+
+// // function addProp(obj, k, v) {
+// //   const copy = {
+// //     ...obj
+// //   };
+// //   copy[k] = v;
+// //   return copy;
+// // }
+
+// // const addProp = (obj, k, v) => {
+// //   return {
+// //     ...obj,
+// //     [k]: v
+// //   }
+// // }
+
+// const addProp = (obj, k, v) => ({
+//   ...obj,
+//   [k]: v,
+// });
+// const res = addProp(team, "happy", ":)");
+
+// // Adding methods to an object!
+// const math = {
+//   numbers: [1, 2, 3, 4, 5],
+//   add: function (x, y) {
+//     return x + y;
+//   },
+//   multiply: function (x, y) {
+//     return x * y;
+//   },
+// };
+
+// // To execute multiply:
+// math.multiply(5, 9); //45
+
+// const auth = {
+//   username: "TommyBot",
+//   login() {
+//     console.log("LOGGED YOU IN!");
+//   },
+//   logout() {
+//     console.log("GOODBYE");
+//   },
+// };
+
+function sayHi() {
+  console.log("HI");
+  //this refers to the window (global scope object in the browser)
+  console.log(this);
+}
+
+const greet = function () {
+  //this refers to the window (global scope object in the browser)
+  console.log(this);
 };
+function sayHi() {
+  console.log("HI");
+  //this refers to the window (global scope object in the browser)
+  console.log(this);
+}
 
-// function addProp(obj, k, v) {
-//   const copy = {
-//     ...obj
-//   };
-//   copy[k] = v;
-//   return copy;
-// }
-
-// const addProp = (obj, k, v) => {
-//   return {
-//     ...obj,
-//     [k]: v
-//   }
-// }
-
-const addProp = (obj, k, v) => ({
-  ...obj,
-  [k]: v,
-});
-const res = addProp(team, "happy", ":)");
-
-// Adding methods to an object!
-const math = {
-  numbers: [1, 2, 3, 4, 5],
-  add: function (x, y) {
-    return x + y;
+const person = {
+  first: "Cherilyn",
+  last: "Sarkisian",
+  nickName: "Cher",
+  fullName() {
+    //In a method, this refers to the object the method "lives" in:
+    const { first, last, nickName } = this;
+    return `${first} ${last} AKA ${nickName}`;
   },
-  multiply: function (x, y) {
-    return x * y;
-  },
-};
-
-// To execute multiply:
-math.multiply(5, 9); //45
-
-const auth = {
-  username: "TommyBot",
-  login() {
-    console.log("LOGGED YOU IN!");
-  },
-  logout() {
-    console.log("GOODBYE");
+  printBio() {
+    const fullName = this.fullName();
+    console.log(`${fullName} is a person!`);
   },
 };
