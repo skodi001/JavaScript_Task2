@@ -1647,32 +1647,47 @@ const btn = document.querySelector("#clicker");
 // btn.onclick = greet;
 
 // Or use an anonymous function (more common)
-btn.onclick = () => {
-  console.log("YOU CLICKED ME UGHHHH!!");
-};
+// btn.onclick = () => {
+//   console.log("YOU CLICKED ME UGHHHH!!");
+// };
 
-function greet() {
-  alert("HEY BUDDY!");
-}
+// function greet() {
+//   alert("HEY BUDDY!");
+// }
 
-const btn = document.querySelector("button");
+// const btn = document.querySelector("button");
 
-btn.addEventListener("click", function () {
-  alert("CLICKED!!!");
-});
+// btn.addEventListener("click", function () {
+//   alert("CLICKED!!!");
+// });
 
-btn.addEventListener("click", function () {
-  console.log("SECOND THING!!");
-});
+// btn.addEventListener("click", function () {
+//   console.log("SECOND THING!!");
+// });
 
-btn.addEventListener("mouseover", function () {
-  btn.innerText = "STOP TOUCHING ME";
-});
+// btn.addEventListener("mouseover", function () {
+//   btn.innerText = "STOP TOUCHING ME";
+// });
 
-btn.addEventListener("mouseout", function () {
-  btn.innerText = "Click Me!";
-});
+// btn.addEventListener("mouseout", function () {
+//   btn.innerText = "Click Me!";
+// });
 
-window.addEventListener("scroll", function () {
-  console.log("STOP SCROLLING!!");
+// window.addEventListener("scroll", function () {
+//   console.log("STOP SCROLLING!!");
+// });
+
+const form = document.querySelector("#signup-form");
+
+const creditCardInput = document.querySelector("#cc");
+const termsCheckbox = document.querySelector("#terms");
+const veggieSelect = document.querySelector("#veggie");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); //stops the request from being sent (prevents page reload)
+  console.log("cc", creditCardInput.value);
+  console.log("terms", termsCheckbox.checked);
+  console.log("veggieSelect", veggieSelect.value);
+  //send form data to db
+  //append something to page using form data
 });
