@@ -1932,20 +1932,20 @@ const btn = document.querySelector("#clicker");
 // firstReq.send();
 // console.log('Request Sent!');
 
-fetch("https://swapi.co/api/planetsuy21/")
-  .then((response) => {
-    if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+// fetch("https://swapi.co/api/planetsuy21/")
+//   .then((response) => {
+//     if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
 
-    response.json().then((data) => {
-      for (let planet of data.results) {
-        console.log(planet.name);
-      }
-    });
-  })
-  .catch((err) => {
-    console.log("SOMETHING WENT WRONG WITH FETCH!");
-    console.log(err);
-  });
+//     response.json().then((data) => {
+//       for (let planet of data.results) {
+//         console.log(planet.name);
+//       }
+//     });
+//   })
+//   .catch((err) => {
+//     console.log("SOMETHING WENT WRONG WITH FETCH!");
+//     console.log(err);
+//   });
 
 // const firstReq = new XMLHttpRequest();
 // firstReq.addEventListener('load', function() {
@@ -1971,59 +1971,138 @@ fetch("https://swapi.co/api/planetsuy21/")
 // firstReq.send();
 // console.log('Request Sent!');
 
-fetch("https://swapi.co/api/planets/")
-  .then((response) => {
-    if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+// fetch("https://swapi.co/api/planets/")
+//   .then((response) => {
+//     if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
 
-    return response.json();
-  })
-  .then((data) => {
-    console.log("FETCHED ALL PLANETS (first 10)");
-    const filmURL = data.results[0].films[0];
-    return fetch(filmURL);
-  })
-  .then((response) => {
-    if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log("FETCHED ALL PLANETS (first 10)");
+//     const filmURL = data.results[0].films[0];
+//     return fetch(filmURL);
+//   })
+//   .then((response) => {
+//     if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
 
-    return response.json();
-  })
-  .then((data) => {
-    console.log("FETCHED FIRST FILM, based off of first planet");
-    console.log(data.title);
-  })
-  .catch((err) => {
-    console.log("SOMETHING WENT WRONG WITH FETCH!");
-    console.log(err);
-  });
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log("FETCHED FIRST FILM, based off of first planet");
+//     console.log(data.title);
+//   })
+//   .catch((err) => {
+//     console.log("SOMETHING WENT WRONG WITH FETCH!");
+//     console.log(err);
+//   });
 
-const checkStatusAndParse = (response) => {
-  if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+// const checkStatusAndParse = (response) => {
+//   if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
 
-  return response.json();
-};
+//   return response.json();
+// };
 
-const printPlanets = (data) => {
-  console.log("Loaded 10 more planets...");
-  for (let planet of data.results) {
-    console.log(planet.name);
+// const printPlanets = (data) => {
+//   console.log("Loaded 10 more planets...");
+//   for (let planet of data.results) {
+//     console.log(planet.name);
+//   }
+//   return Promise.resolve(data.next);
+// };
+
+// const fetchNextPlanets = (url = "https://swapi.co/api/planets/") => {
+//   return fetch(url);
+// };
+
+// fetchNextPlanets()
+//   .then(checkStatusAndParse)
+//   .then(printPlanets)
+//   .then(fetchNextPlanets)
+//   .then(checkStatusAndParse)
+//   .then(printPlanets)
+//   .then(fetchNextPlanets)
+//   .then(checkStatusAndParse)
+//   .then(printPlanets)
+//   .catch((err) => {
+//     console.log("SOMETHING WENT WRONG WITH FETCH!");
+//     console.log(err);
+//   });
+
+// REGULAR function returns a string:
+// function greet() {
+// 	return 'HELLO!!!';
+// }
+
+// THE ASYNC KEYWORD!
+// This function now returns a promise!
+async function greet() {
+  return "HELLO!!!"; //resolved with the value of 'HELLO!!!'
+}
+greet().then((val) => {
+  console.log("PROMISE RESOLVED WITH: ", val);
+});
+
+async function add(x, y) {
+  if (typeof x !== "number" || typeof y !== "number") {
+    throw "X and Y must be numbers!";
   }
-  return Promise.resolve(data.next);
-};
+  return x + y;
+}
 
-const fetchNextPlanets = (url = "https://swapi.co/api/planets/") => {
-  return fetch(url);
-};
+// Equivalent non-async function...
+// function add(x, y) {
+// 	return new Promise((resolve, reject) => {
+// 		if (typeof x !== 'number' || typeof y !== 'number') {
+// 			reject('X and Y must be numbers!');
+// 		}
+// 		resolve(x + y);
+// 	});
+// }
 
-fetchNextPlanets()
-  .then(checkStatusAndParse)
-  .then(printPlanets)
-  .then(fetchNextPlanets)
-  .then(checkStatusAndParse)
-  .then(printPlanets)
-  .then(fetchNextPlanets)
-  .then(checkStatusAndParse)
-  .then(printPlanets)
+add(6, 7)
+  .then((val) => {
+    console.log("PROMISE RESOLVED WITH: ", val);
+  })
   .catch((err) => {
-    console.log("SOMETHING WENT WRONG WITH FETCH!");
-    console.log(err);
+    console.log("PROMISE REJECTED WITH: ", err);
   });
+
+async function getPlanets() {
+  const res = await axios.get("https://swapi.co/api/planets/");
+  console.log(res.data); //only runs once the previous line is complete (the axios promise is resolved)
+}
+
+getPlanets();
+
+// Without async/await...
+
+// function getPlanets() {
+// 	return axios.get('https://swapi.co/api/planets/');
+// }
+
+// getPlanets().then((res) => {
+// 	console.log(res.data);
+// });
+
+// ONE OPTION FOR ERROR HANDLING...
+async function getPlanets() {
+  //Invalid URL...
+  const res = await axios.get("https://swapi.co/api/planeklsajdalksts/");
+  console.log(res.data);
+}
+
+getPlanets().catch((err) => {
+  console.log("IN CATCH!!!");
+  console.log(err);
+});
+
+// ANOTHER OPTION...
+async function getPlanets() {
+  try {
+    const res = await axios.get("https://swapi.co/api/planeklsajdalksts/");
+    console.log(res.data);
+  } catch (e) {
+    console.log("IN CATCH!", e);
+  }
+}
+getPlanets();
