@@ -2259,32 +2259,50 @@ The output should not contain any excess characters.
  * 
  * 
  */
-(function () {
-  const isArrEmpty = (string) => {
-    return !string.length;
-  };
-  const strings = process.argv.slice(2);
-  if (!isArrEmpty(strings)) {
-    const commonSubstrings = [];
-    let commonString = "";
-    for (let i = 0; i < strings[0].length; i++) {
-      commonString += strings[0][i];
-      const isCommonSubstring = strings.every((str) =>
-        str.includes(commonString)
-      );
-      if (isCommonSubstring) {
-        commonSubstrings.push(commonString);
-      } else {
-        commonString = commonString[0]
-          ? commonString[commonString.length - 1]
-          : "";
-      }
-    }
-    console.log(commonSubstrings.sort((a, b) => b.length - a.length)[0], "\n");
-  } else {
-    console.log("\n");
-  }
-})();
+// (function () {
+//   const isArrEmpty = (string) => {
+//     return !string.length;
+//   };
+//   const strings = process.argv.slice(2);
+//   if (!isArrEmpty(strings)) {
+//     const commonSubstrings = [];
+//     let commonString = "";
+//     for (let i = 0; i < strings[0].length; i++) {
+//       commonString += strings[0][i];
+//       const isCommonSubstring = strings.every((str) =>
+//         str.includes(commonString)
+//       );
+//       if (isCommonSubstring) {
+//         commonSubstrings.push(commonString);
+//       } else {
+//         commonString = commonString[0]
+//           ? commonString[commonString.length - 1]
+//           : "";
+//       }
+//     }
+//     console.log(commonSubstrings.sort((a, b) => b.length - a.length)[0], "\n");
+//   } else {
+//     console.log("\n");
+//   }
+// })();
 
 // node app.js hello slo losds
 // node app.js hello wohel helll
+
+function alternatetext(s) {
+  var chars = s.toLowerCase().split("");
+  for (var i = 0; i < chars.length; i = i + 2) {
+    chars[i] = chars[i].toUpperCase();
+  }
+  return chars.join("");
+}
+
+console.log(alternatetext("temur ishkal"));
+
+let s = "temur ishkal";
+s = s
+  .split("")
+  .map((letter, i) =>
+    i % 2 == 0 ? letter.toLocaleUpperCase() : letter.toLowerCase()
+  )
+  .join("");
